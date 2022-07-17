@@ -8,14 +8,23 @@ let p2ScoreText = document.querySelector("#p2Score");
 let p1Score = 0;
 let p2Score = 0;
 
+let winningScore = 5;
+let isGameFinished = false;
+
 p1Button.addEventListener("click", () => {
-  p1Score += 1;
-  p1ScoreText.textContent = p1Score;
+  if (!isGameFinished) {
+    p1Score += 1;
+    checkGameOver();
+    p1ScoreText.textContent = p1Score;
+  }
 });
 
 p2Button.addEventListener("click", () => {
-  p2Score += 1;
-  p2ScoreText.textContent = p2Score;
+  if (!isGameFinished) {
+    p2Score += 1;
+    checkGameOver();
+    p2ScoreText.textContent = p2Score;
+  }
 });
 
 resetButton.addEventListener("click", () => {
@@ -24,3 +33,9 @@ resetButton.addEventListener("click", () => {
   p2Score = 0;
   p2ScoreText.textContent = p2Score;
 });
+
+const checkGameOver = (score) => {
+  if (score === winningScore) {
+    isGameFinished = true;
+  }
+};
