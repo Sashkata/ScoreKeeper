@@ -15,7 +15,9 @@ let isGameFinished = false;
 p1Button.addEventListener("click", () => {
   if (!isGameFinished) {
     p1Score += 1;
-    checkGameOver(p1Score);
+    if (checkGameOver(p1Score)) {
+      assignWinners(p1ScoreText, p2ScoreText);
+    }
     p1ScoreText.textContent = p1Score;
   }
 });
@@ -23,7 +25,9 @@ p1Button.addEventListener("click", () => {
 p2Button.addEventListener("click", () => {
   if (!isGameFinished) {
     p2Score += 1;
-    checkGameOver(p2Score);
+    if (checkGameOver(p2Score)) {
+      assignWinners(p2ScoreText, p1ScoreText);
+    }
     p2ScoreText.textContent = p2Score;
   }
 });
@@ -34,6 +38,8 @@ const resetGame = () => {
   p2Score = 0;
   p2ScoreText.textContent = p2Score;
   isGameFinished = false;
+  p1ScoreText.classList.remove("winner", "loser");
+  p2ScoreText.classList.remove("winner", "loser");
 };
 
 resetButton.addEventListener("click", resetGame);
@@ -43,8 +49,14 @@ winningScoreSelect.addEventListener("change", function () {
   resetGame();
 });
 
+const assignWinners = (winner, loser) => {
+  winner.classList.add("winner");
+  loser.classList.add("loser");
+};
+
 const checkGameOver = (score) => {
   if (score === winningScore) {
     isGameFinished = true;
+    return isGameFinished;
   }
 };
