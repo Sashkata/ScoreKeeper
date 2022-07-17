@@ -32,6 +32,7 @@ resetButton.addEventListener("click", () => {
   p1ScoreText.textContent = p1Score;
   p2Score = 0;
   p2ScoreText.textContent = p2Score;
+  isGameFinished = false;
 });
 
 const checkGameOver = (score) => {
