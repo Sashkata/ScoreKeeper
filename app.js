@@ -14,7 +14,7 @@ let isGameFinished = false;
 p1Button.addEventListener("click", () => {
   if (!isGameFinished) {
     p1Score += 1;
-    checkGameOver();
+    checkGameOver(p1Score);
     p1ScoreText.textContent = p1Score;
   }
 });
@@ -22,7 +22,7 @@ p1Button.addEventListener("click", () => {
 p2Button.addEventListener("click", () => {
   if (!isGameFinished) {
     p2Score += 1;
-    checkGameOver();
+    checkGameOver(p2Score);
     p2ScoreText.textContent = p2Score;
   }
 });
